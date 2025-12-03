@@ -7,8 +7,14 @@ import { useFetch } from '../../hooks/useFetch';
 
 const FeaturedProducts = () => {
     const { data, loading } = useFetch('https://fakestoreapi.com/products?limit=4');
-
-    if (loading) return <Spinner />;
+    if (loading) {
+        return (
+            <Container className="text-center py-5">
+                <Spinner animation="border" variant="primary" />
+                <p className="mt-3 text-muted">Cargando productos...</p>
+            </Container>
+        );
+    }
 
     return (
         <section className="py-5">

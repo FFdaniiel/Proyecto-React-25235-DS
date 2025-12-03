@@ -1,13 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Card, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { CarritoContext } from '../../context/CarritoContext';
 
-const CardComponent = ({ id, title, image, price, category, description, onButtonClick, buttonText = 'Ver más' }) => {
+const CardComponent = ({ id, title, image, price, category, description, onButtonClick, buttonText = 'Ver más', addToCart = false, product }) => {
     const navigate = useNavigate();
+    const { agregarCarrito } = useContext(CarritoContext);
+
     // esto sirve para que si se pasa un onButtonClick, se ejecute, o si no se pasa, se redirija a la pagina del producto
     const handleClick = () => {
         if (onButtonClick) {
             onButtonClick();
+        } else if (addToCart && product) {
+            agregarCarrito(product);
+            toast.success(`${title} agregado al carrito`, { autoClose: 2000 });
         } else if (id) {
             navigate(`/productos/${id}`);
         }

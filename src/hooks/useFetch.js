@@ -12,6 +12,7 @@ export const useFetch = (url) => {
             .then((data) => setData(data))
             .catch((error) => console.error('Error al cargar datos:', error))
             .finally(() => setLoading(false));
+
     }, [url]);
 
     return { data, loading };
