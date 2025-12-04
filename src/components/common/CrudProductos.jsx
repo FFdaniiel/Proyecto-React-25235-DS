@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Container, Table, Button, Modal, Form } from 'react-bootstrap';
+import Swal from 'sweetalert2';
 
 const CrudProductos = () => {
     const [productos, setProductos] = useState([]);
@@ -58,16 +59,48 @@ const CrudProductos = () => {
 
     // Eliminar producto
     const handleDelete = async (id) => {
-        if (window.confirm('¿Estás seguro de eliminar este producto?')) {
+        const result = await Swal.fire({
+            title: '¿Estás seguro?',
+            text: 'Esta acción eliminará el producto',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Sí, eliminar',
+            cancelButtonText: 'Cancelar',
+            customClass: {
+                confirmButton: 'btn btn-danger',
+                cancelButton: 'btn btn-secondary'
+            },
+            buttonsStyling: false
+        });
+
+        if (result.isConfirmed) {
             try {
                 await fetch(`${API_URL}/${id}`, {
                     method: 'DELETE'
                 });
                 getProductos();
-                alert('Producto eliminado exitosamente');
+                Swal.fire({
+                    title: '¡Eliminado!',
+                    text: 'Producto eliminado exitosamente',
+                    icon: 'success',
+                    confirmButtonText: 'Entendido',
+                    customClass: {
+                        confirmButton: 'btn btn-success'
+                    },
+                    buttonsStyling: false
+                });
             } catch (error) {
                 console.error('Error al eliminar:', error);
-                alert('Error al eliminar el producto');
+                Swal.fire({
+                    title: 'Error',
+                    text: 'Error al eliminar el producto',
+                    icon: 'error',
+                    confirmButtonText: 'Entendido',
+                    customClass: {
+                        confirmButton: 'btn btn-danger'
+                    },
+                    buttonsStyling: false
+                });
             }
         }
     };
@@ -88,21 +121,48 @@ const CrudProductos = () => {
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(productData),
                 });
-                alert('Producto actualizado exitosamente');
+                Swal.fire({
+                    title: '¡Actualizado!',
+                    text: 'Producto actualizado exitosamente',
+                    icon: 'success',
+                    confirmButtonText: 'Entendido',
+                    customClass: {
+                        confirmButton: 'btn btn-success'
+                    },
+                    buttonsStyling: false
+                });
             } else {
                 await fetch(API_URL, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(productData),
                 });
-                alert('Producto creado exitosamente');
+                Swal.fire({
+                    title: '¡Creado!',
+                    text: 'Producto creado exitosamente',
+                    icon: 'success',
+                    confirmButtonText: 'Entendido',
+                    customClass: {
+                        confirmButton: 'btn btn-success'
+                    },
+                    buttonsStyling: false
+                });
             }
 
             setShowModal(false);
             getProductos();
         } catch (error) {
             console.error('Error al guardar:', error);
-            alert('Error al guardar el producto');
+            Swal.fire({
+                title: 'Error',
+                text: 'Error al guardar el producto',
+                icon: 'error',
+                confirmButtonText: 'Entendido',
+                customClass: {
+                    confirmButton: 'btn btn-danger'
+                },
+                buttonsStyling: false
+            });
         }
     };
 

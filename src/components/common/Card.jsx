@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Card, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import confetti from 'canvas-confetti';
 import { CarritoContext } from '../../context/CarritoContext';
 
 const CardComponent = ({ id, title, image, price, category, description, onButtonClick, buttonText = 'Ver más', addToCart = false, product }) => {
@@ -14,6 +15,12 @@ const CardComponent = ({ id, title, image, price, category, description, onButto
             onButtonClick();
         } else if (addToCart && product) {
             agregarCarrito(product);
+            // Confetis para el carrito!!
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
             toast.success(`${title} agregado al carrito`, { autoClose: 2000 });
         } else if (id) {
             navigate(`/productos/${id}`);
@@ -34,7 +41,7 @@ const CardComponent = ({ id, title, image, price, category, description, onButto
                     <span className="badge bg-dark mb-2">{category}</span>
                 )}
                 <Card.Title>{title}</Card.Title>
-                { description && (
+                {description && (
                     <Card.Text className='text-muted small flex-grow-1'>
                         {description.length > 60 ? description.slice(0, 60) + '...' : description}
                     </Card.Text>
