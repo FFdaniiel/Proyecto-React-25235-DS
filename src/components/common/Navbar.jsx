@@ -42,11 +42,11 @@ const Navigation = () => {
                         {/* Usuario logueado */}
                         {estaLogueado ? (
                             <>
-                                <span className="text-dark me-3">
+                                <span className="text-dark me-3 mb-2 mb-lg-0">
                                     Hola, <strong>{usuario}</strong>
                                 </span>
                                 <Button
-                                    variant="outline-dark"
+                                    variant="outline-dark mb-3 mb-lg-0"
                                     size="sm"
                                     onClick={handleLogout}
                                     className="me-3"
@@ -55,7 +55,7 @@ const Navigation = () => {
                                 </Button>
                             </>
                         ) : (
-                            <Nav.Link as={Link} to="/login" className="text-dark me-3">
+                            <Nav.Link as={Link} to="/login" className="text-dark me-3 ">
                                 Iniciar Sesión
                             </Nav.Link>
                         )}

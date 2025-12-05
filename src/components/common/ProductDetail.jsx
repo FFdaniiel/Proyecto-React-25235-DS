@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import { toast } from 'react-toastify';
 import confetti from 'canvas-confetti';
 import { useFetch } from '../../hooks/useFetch';
-import { FaChevronLeft, FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa';
+import { FaChevronLeft, FaStar, FaStarHalfAlt, FaRegStar, FaCartPlus } from 'react-icons/fa';
 import { useContext } from 'react';
 import { CarritoContext } from '../../context/CarritoContext';
 
@@ -177,10 +177,10 @@ const ProductDetail = () => {
                                     className="py-3 fw-semibold"
                                     onClick={handleAgregarCarrito}
                                 >
-                                    🛒 Agregar al carrito
+                                    <FaCartPlus /> Agregar al carrito
                                 </Button>
 
-                                {/* Botón Volver a productos */}
+                                {/* Botón Volver a productos*/}
                                 <Link to="/productos" className="text-decoration-none">
                                     <Button
                                         variant="outline-secondary"

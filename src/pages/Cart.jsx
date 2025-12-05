@@ -53,19 +53,19 @@ const Cart = () => {
                                 <Card key={product.id} className="mb-3">
                                     <Card.Body>
                                         <Row className="align-items-center">
-                                            <Col md={2}>
+                                            <Col md={2} xs={4}>
                                                 <img
                                                     src={product.image}
                                                     alt={product.title}
-                                                    className="img-fluid rounded"
+                                                    className="img-fluid rounded mb-3"
                                                     style={{ height: '120px', objectFit: 'cover' }}
                                                 />
                                             </Col>
-                                            <Col md={4}>
+                                            <Col md={4} xs={8}>
                                                 <h6 className="mb-1">{product.title}</h6>
                                                 <p className="text-muted mb-0">${product.price}</p>
                                             </Col>
-                                            <Col md={3}>
+                                            <Col md={3} xs={5}>
                                                 <div className="d-flex align-items-center">
                                                     <Button
                                                         variant="outline-secondary"
@@ -85,10 +85,10 @@ const Cart = () => {
                                                     </Button>
                                                 </div>
                                             </Col>
-                                            <Col md={2}>
+                                            <Col md={2} xs={5}>
                                                 <h6 className="mb-0">${(product.price * product.cantidad).toFixed(2)}</h6>
                                             </Col>
-                                            <Col md={1}>
+                                            <Col md={1} xs={1}>
                                                 <Button
                                                     variant="outline-danger"
                                                     size="sm"
@@ -102,7 +102,7 @@ const Cart = () => {
                                 </Card>
                             ))}
 
-                            <div className="d-flex justify-content-end mt-3">
+                            <div className="d-flex justify-content-end mt-3 w-100 pb-3">
                                 <Button
                                     variant="outline-danger"
                                     onClick={vaciarCarrito}

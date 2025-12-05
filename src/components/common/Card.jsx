@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { Card, Button } from 'react-bootstrap';
+import '../../App';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import confetti from 'canvas-confetti';
@@ -33,8 +34,8 @@ const CardComponent = ({ id, title, image, price, category, description, onButto
                 variant="top"
                 src={image}
                 alt={title}
-                height={320}
-                className='card-img-top'
+
+                className='card-img-top prducts-card-img '
             />
             <Card.Body className='d-flex flex-column'>
                 {category && (

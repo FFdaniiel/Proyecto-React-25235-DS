@@ -22,7 +22,7 @@ const PopularCategories = () => {
         <section className="py-5">
             <Container>
                 <h2 className="fw-semibold mb-4">Categorías populares</h2>
-                <Row xs={1} sm={2} lg={4} className="g-4">
+                <Row xs={2} sm={2} lg={4} className="g-4">
                     {topCategories.map((category, index) => (
                         <Col key={index} className="d-flex justify-content-center">
                             <Card
